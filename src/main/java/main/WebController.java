@@ -20,35 +20,35 @@ import reactor.core.publisher.Mono;
 @Controller
 public class WebController {
 
-    @Autowired
-    private OAuth2AuthorizedClientService authorizedClientService;
+//    @Autowired
+//    private OAuth2AuthorizedClientService authorizedClientService;
 
     @RequestMapping("/")
     public String homePage() {
         return "welcome_home";
     }
 
-    @RequestMapping("/loginSuccess")
-    public String sayHello(Model model, OAuth2AuthenticationToken authentication) {
-        OAuth2AuthorizedClient authorizedClient = this.getAuthorizedClient(authentication);
-        Map userAttributes = Collections.emptyMap();
-        String userInfoEndpointUri = authorizedClient.getClientRegistration()
-                .getProviderDetails().getUserInfoEndpoint().getUri();
-        if (userInfoEndpointUri.isEmpty()) { // userInfoEndpointUri is optional for OIDC Clients
-            userAttributes = WebClient.builder()
-                    .filter(oauth2Credentials(authorizedClient)).build()
-                    .get().uri(userInfoEndpointUri)
-                    .retrieve()
-                    .bodyToMono(Map.class).block();
-        }
-        model.addAttribute("userAttributes", userAttributes);
-        return "userinfo";
-    }
+//    @RequestMapping("/loginSuccess")
+//    public String sayHello(Model model, OAuth2AuthenticationToken authentication) {
+//        OAuth2AuthorizedClient authorizedClient = this.getAuthorizedClient(authentication);
+//        Map userAttributes = Collections.emptyMap();
+//        String userInfoEndpointUri = authorizedClient.getClientRegistration()
+//                .getProviderDetails().getUserInfoEndpoint().getUri();
+//        if (userInfoEndpointUri.isEmpty()) { // userInfoEndpointUri is optional for OIDC Clients
+//            userAttributes = WebClient.builder()
+//                    .filter(oauth2Credentials(authorizedClient)).build()
+//                    .get().uri(userInfoEndpointUri)
+//                    .retrieve()
+//                    .bodyToMono(Map.class).block();
+//        }
+//        model.addAttribute("userAttributes", userAttributes);
+//        return "userinfo";
+//    }
 
-    private OAuth2AuthorizedClient getAuthorizedClient(OAuth2AuthenticationToken authentication) {
-        return this.authorizedClientService.loadAuthorizedClient(
-                authentication.getAuthorizedClientRegistrationId(), authentication.getName());
-    }
+//    private OAuth2AuthorizedClient getAuthorizedClient(OAuth2AuthenticationToken authentication) {
+//        return this.authorizedClientService.loadAuthorizedClient(
+//                authentication.getAuthorizedClientRegistrationId(), authentication.getName());
+//    }
 
     private ExchangeFilterFunction oauth2Credentials(OAuth2AuthorizedClient authorizedClient) {
         return ExchangeFilterFunction.ofRequestProcessor(

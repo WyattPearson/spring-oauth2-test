@@ -52,18 +52,15 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         // .authorizationRequestRepository(authorizationRequestRepository());
     }
 
-    // @Bean
     public ClientRegistrationRepository clientRegistrationRepository() {
         String clientId = env.getProperty(CLIENT_PROPERTY_KEY + "github." + "client-id");
         String clientSecret = env.getProperty(CLIENT_PROPERTY_KEY + "github." + "client-secret");
-        ClientRegistration reg = getBuilder("github").clientId(clientId).clientSecret(clientSecret).build();
+        ClientRegistration reg = getBuilder("GitHub").clientId(clientId).clientSecret(clientSecret).build();
 
         return new InMemoryClientRegistrationRepository(reg);
     }
-
-    // @Bean
+    
     public AuthorizationRequestRepository<OAuth2AuthorizationRequest> authorizationRequestRepository() {
-
         return new HttpSessionOAuth2AuthorizationRequestRepository();
     }
 
@@ -90,9 +87,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         return builder;
     }
 
-    // @Bean
     public OAuth2AuthorizedClientService authorizedClientService() {
-
         return new InMemoryOAuth2AuthorizedClientService(
                 clientRegistrationRepository());
     }
