@@ -10,10 +10,8 @@ plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
     id 'org.springframework.boot' version '2.2.0.RELEASE'
-    id 'java'  
+    id 'java' 
 }
-
-apply plugin: 'io.spring.dependency-management'  
 
 repositories {
     // Use jcenter for resolving dependencies.
@@ -27,7 +25,7 @@ dependencies {
     api 'org.apache.commons:commons-math3:3.6.1'
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
-    api 'com.google.guava:guava:28.2-jre'
+    implementation 'com.google.guava:guava:28.2-jre'
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
@@ -41,7 +39,7 @@ dependencies {
     api 'org.springframework:spring-test:5.2.0.RELEASE'
 	
     implementation 'org.springframework.boot:spring-boot-actuator:2.2.0.RELEASE'
-    //implementation 'org.springframework.boot:spring-boot-autoconfigure:2.2.0.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-autoconfigure:2.2.0.RELEASE'
     implementation 'org.springframework.boot:spring-boot-configuration-processor:2.2.0.RELEASE'
     implementation 'org.springframework.boot:spring-boot-starter:2.2.0.RELEASE'
     implementation 'org.springframework.boot:spring-boot-starter-actuator:2.2.0.RELEASE'
@@ -58,8 +56,8 @@ dependencies {
     api 'org.springframework.security:spring-security-web:5.2.0.RELEASE'
     api 'org.springframework.security:spring-security-oauth2-client:5.2.0.RELEASE'
     api 'org.springframework.security:spring-security-oauth2-jose:5.2.0.RELEASE'
+    
+    api 'org.springframework.boot:spring-boot-starter-oauth2-client:2.2.0.RELEASE'
 	
     //api 'org.springframework.security.oauth:spring-security-oauth2:2.3.8.RELEASE'¬53
-    
-
 }
