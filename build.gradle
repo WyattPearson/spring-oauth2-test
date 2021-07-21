@@ -39,7 +39,7 @@ dependencies {
     api 'org.springframework:spring-test:5.2.0.RELEASE'
 	
     implementation 'org.springframework.boot:spring-boot-actuator:2.2.0.RELEASE'
-    implementation 'org.springframework.boot:spring-boot-autoconfigure:2.2.0.RELEASE'
+    //implementation 'org.springframework.boot:spring-boot-autoconfigure:2.2.0.RELEASE'
     implementation 'org.springframework.boot:spring-boot-configuration-processor:2.2.0.RELEASE'
     implementation 'org.springframework.boot:spring-boot-starter:2.2.0.RELEASE'
     implementation 'org.springframework.boot:spring-boot-starter-actuator:2.2.0.RELEASE'
@@ -57,7 +57,5 @@ dependencies {
     api 'org.springframework.security:spring-security-oauth2-client:5.2.0.RELEASE'
     api 'org.springframework.security:spring-security-oauth2-jose:5.2.0.RELEASE'
     
-    api 'org.springframework.boot:spring-boot-starter-oauth2-client:2.2.0.RELEASE'
-	
     //api 'org.springframework.security.oauth:spring-security-oauth2:2.3.8.RELEASE'¬53
 }
