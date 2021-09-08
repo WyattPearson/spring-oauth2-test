@@ -5,6 +5,10 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ResolvableType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.stereotype.Controller;
@@ -20,6 +24,9 @@ public class LoginController {
 
     @Autowired
     private ClientRegistrationRepository clientRegistrationRepository;
+
+    @Autowired
+    private OAuth2AuthorizedClientService authorizedClientService;
 
     @GetMapping("/oauth_login")
     public String getLoginPage(Model model) {
@@ -38,8 +45,23 @@ public class LoginController {
         return "oauth_login";
     }
 
-    @GetMapping("/success")
-    public String successPage(Model model) {
+    // @GetMapping("/oauth2/redirect/github")
+    // public String gitHubRedirect(Model model, @RequestParam String code, @RequestParam String state) {
+    // model.addAttribute("code", code);
+    // model.addAttribute("state", state);
+    // return "oauth_redirect";
+    // }
+
+    @GetMapping("/test/success")
+    public String getLoginInfo(Model model, OAuth2AuthenticationToken authentication) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("principal", auth.getPrincipal());
+        model.addAttribute("details", auth.getDetails());
         return "success";
+    }
+
+    @GetMapping("/failure")
+    public String failure() {
+        return "failure";
     }
 }
